@@ -18,6 +18,7 @@
     <nav>
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
       <a href="#certs">Certifications</a>
       <a href="#typing">Typing</a>
       <a href="#contact">Contact</a>
@@ -44,8 +45,30 @@
     </div>
   </section>
 
+  <!-- HIGHLIGHTS BAND -->
+  <section class="highlights">
+    <div class="wrap highlights-grid">
+      <div class="highlight">
+        <span class="highlight-value">3</span>
+        <span class="highlight-label">Pearson IT certifications</span>
+      </div>
+      <div class="highlight">
+        <span class="highlight-value">6</span>
+        <span class="highlight-label">Public repositories</span>
+      </div>
+      <div class="highlight">
+        <span class="highlight-value">171 wpm</span>
+        <span class="highlight-label">Peak typing speed (15s)</span>
+      </div>
+      <div class="highlight">
+        <span class="highlight-value">Top 3.15%</span>
+        <span class="highlight-label">Global 60s leaderboard</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ABOUT -->
-  <section id="about" class="section wrap">
+  <section id="about" class="section wrap reveal">
     <h2 class="section-title"><span class="num">01</span> About</h2>
     <div class="about-grid">
       <div>
@@ -83,7 +106,7 @@
   </section>
 
   <!-- PROJECTS -->
-  <section id="projects" class="section wrap">
+  <section id="projects" class="section wrap reveal">
     <h2 class="section-title"><span class="num">02</span> Projects</h2>
     <div class="project-grid">
 
@@ -144,9 +167,28 @@
     </div>
   </section>
 
+  <!-- EDUCATION -->
+  <section id="education" class="section wrap reveal">
+    <h2 class="section-title"><span class="num">03</span> Education</h2>
+    <div class="edu-item">
+      <span class="edu-year">2023 — Present</span>
+      <div>
+        <h3>BS Computer Science</h3>
+        <p>University of Mindanao, Davao City — Third year. Coursework spans programming languages, web development, databases, and software engineering.</p>
+      </div>
+    </div>
+    <div class="edu-item">
+      <span class="edu-year">2024 — 2025</span>
+      <div>
+        <h3>IT Specialist Certifications</h3>
+        <p>Earned Pearson/Certiport IT Specialist badges in Java, Databases, and Cybersecurity alongside coursework.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- CERTIFICATIONS -->
-  <section id="certs" class="section wrap">
-    <h2 class="section-title"><span class="num">03</span> Certifications</h2>
+  <section id="certs" class="section wrap reveal">
+    <h2 class="section-title"><span class="num">04</span> Certifications</h2>
     <p class="section-lede">IT Specialist certifications issued by Certiport, a Pearson VUE business.</p>
     <div class="cert-grid">
 
@@ -179,8 +221,8 @@
   </section>
 
   <!-- TYPING / SOFT SKILLS -->
-  <section id="typing" class="section wrap">
-    <h2 class="section-title"><span class="num">04</span> Soft skills — speed &amp; consistency</h2>
+  <section id="typing" class="section wrap reveal">
+    <h2 class="section-title"><span class="num">05</span> Soft skills — speed &amp; consistency</h2>
     <p class="section-lede">
       I keep a daily MonkeyType habit. It's a small thing, but it reflects how
       I work: focused, consistent, and comfortable improving incrementally
@@ -226,8 +268,8 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="section wrap">
-    <h2 class="section-title"><span class="num">05</span> Contact</h2>
+  <section id="contact" class="section wrap reveal">
+    <h2 class="section-title"><span class="num">06</span> Contact</h2>
     <div class="contact-grid">
       <a class="contact-item" href="mailto:a.parondo.549789@umindanao.edu.ph">
         <span class="contact-label">Email</span>
@@ -250,5 +292,17 @@
   <p>© 2026 Airo S. Parondo. Built with HTML &amp; CSS, deployed on Vercel.</p>
 </footer>
 
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
