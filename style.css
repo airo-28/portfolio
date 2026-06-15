@@ -100,6 +100,34 @@ button:focus-visible {
 .hero {
   padding-top: 96px;
   padding-bottom: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -120px;
+  right: -160px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, var(--accent-soft) 0%, transparent 70%);
+  z-index: -1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent 75%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent 75%);
+  z-index: -1;
 }
 
 .eyebrow {
@@ -249,6 +277,13 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px -12px rgba(45, 110, 94, 0.25);
 }
 
 .project-head {
@@ -308,11 +343,13 @@ button:focus-visible {
   border-radius: 6px;
   padding: 18px;
   background: var(--card-bg);
-  transition: border-color 0.15s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 
 .cert-card:hover {
   border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px -12px rgba(45, 110, 94, 0.25);
 }
 
 .cert-icon {
@@ -455,11 +492,13 @@ button:focus-visible {
   border-radius: 6px;
   padding: 20px;
   background: var(--card-bg);
-  transition: border-color 0.15s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 
 .contact-item:hover {
   border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px -12px rgba(45, 110, 94, 0.25);
 }
 
 .contact-label {
@@ -526,5 +565,115 @@ button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* HIGHLIGHTS BAND */
+.highlights {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--card-bg);
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 36px 0;
+}
+
+.highlight {
+  text-align: center;
+  padding: 0 12px;
+  border-left: 1px solid var(--border);
+}
+
+.highlight:first-child {
+  border-left: none;
+}
+
+.highlight-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--accent);
+  display: block;
+}
+
+.highlight-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 6px;
+  display: block;
+}
+
+/* EDUCATION TIMELINE */
+.edu-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.edu-item:last-child {
+  border-bottom: none;
+}
+
+.edu-year {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+.edu-item h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.edu-item p {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 760px) {
+  .highlights-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 0;
+  }
+
+  .highlight {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+
+  .highlight:nth-child(1),
+  .highlight:nth-child(2) {
+    border-top: none;
+  }
+
+  .edu-item {
+    grid-template-columns: 1fr;
+    gap: 6px;
   }
 }
