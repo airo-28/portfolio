@@ -327,6 +327,14 @@ nav a:hover::after { width: 100%; }
   margin-bottom: 14px;
 }
 
+.hero-name::after {
+  content: "|";
+  color: var(--accent);
+  margin-left: 6px;
+  font-weight: 300;
+  animation: caretPulse 1s step-end infinite;
+}
+
 .hero-desc {
   color: var(--text-dim);
   font-size: 0.92rem;
