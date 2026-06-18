@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Roboto+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -231,6 +232,14 @@
 
     <!-- Interactive typing test -->
     <div class="typing-test-area" id="typing-test" tabindex="0">
+      <!-- Mobile Fallback Overlay -->
+      <div class="typing-mobile-overlay" id="typing-test-mobile-overlay">
+        <span class="mobile-overlay-icon">⌨️</span>
+        <p class="mobile-overlay-title">Desktop Recommended</p>
+        <p class="mobile-overlay-desc">This interactive typing test is designed for physical keyboards.</p>
+        <button class="mobile-overlay-btn" id="mobile-try-btn">Try anyway</button>
+      </div>
+
       <div class="test-prompt" id="test-prompt">
         <!-- JS fills this -->
       </div>
@@ -375,6 +384,22 @@
   const wpmEl = document.getElementById('test-wpm');
   const accEl = document.getElementById('test-acc');
   const timeEl = document.getElementById('test-time');
+  const mobileOverlay = document.getElementById('typing-test-mobile-overlay');
+  const tryBtn = document.getElementById('mobile-try-btn');
+
+  // Show mobile/touch overlay
+  const isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth <= 768);
+  if (isMobile && mobileOverlay) {
+    mobileOverlay.classList.add('active');
+  }
+
+  if (tryBtn && mobileOverlay) {
+    tryBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileOverlay.classList.remove('active');
+      inputEl.focus();
+    });
+  }
 
   let startTime = null;
   let correctChars = 0;

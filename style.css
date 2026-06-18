@@ -685,6 +685,69 @@ nav a:hover::after { width: 100%; }
   animation: caretPulse 1s step-end infinite;
 }
 
+.typing-mobile-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 21, 23, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--r);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  z-index: 10;
+  text-align: center;
+}
+
+.typing-mobile-overlay.active {
+  display: flex;
+}
+
+.mobile-overlay-icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.mobile-overlay-title {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.mobile-overlay-desc {
+  font-family: var(--font);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  max-width: 260px;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.mobile-overlay-btn {
+  background: var(--accent);
+  color: var(--bg-deep);
+  border: none;
+  padding: 8px 18px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.mobile-overlay-btn:hover {
+  filter: brightness(1.1);
+}
+
+.mobile-overlay-btn:active {
+  transform: scale(0.95);
+}
+
 .typing-test-input {
   position: absolute;
   opacity: 0;
